@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgy7v0mignwem"]
+
+[ext_resource type="PackedScene" uid="uid://dl8oytxpbs5h4" path="res://Escenas/interactuar.tscn" id="1_f5odj"]
+[ext_resource type="Script" path="res://Scripts/armario.gd" id="1_gnpt1"]
+
+[sub_resource type="Gradient" id="Gradient_128h5"]
+offsets = PackedFloat32Array(0.504348)
+colors = PackedColorArray(0.977153, 0.525883, 0.38121, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k4f31"]
+gradient = SubResource("Gradient_128h5")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_caq3c"]
+polygon = PackedVector2Array(-27.9494, -27.6854, 25.519, -26.2472, 27.1392, 26.9663, -27.9494, 25.5281)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3r5u"]
+size = Vector2(67, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4dgrm"]
+size = Vector2(74, 46)
+
+[node name="Armario" type="Area2D"]
+script = ExtResource("1_gnpt1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(25.25, 15.25)
+scale = Vector2(0.617188, 0.695313)
+texture = SubResource("GradientTexture2D_k4f31")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D"]
+visible = false
+occluder = SubResource("OccluderPolygon2D_caq3c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(23.5, 10)
+shape = SubResource("RectangleShape2D_l3r5u")
+
+[node name="Interactuar" parent="." instance=ExtResource("1_f5odj")]
+nombre_interaccion = "ocultarte en el armario"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactuar"]
+position = Vector2(26, 13)
+shape = SubResource("RectangleShape2D_4dgrm")

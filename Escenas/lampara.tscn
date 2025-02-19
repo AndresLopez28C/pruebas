@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://dfxnfnfrym8lm"]
+
+[ext_resource type="Script" path="res://Scripts/lampara.gd" id="1_cfads"]
+[ext_resource type="Texture2D" uid="uid://bmwjkj08oalaj" path="res://Imagenes/Sprites/Lampara.webp" id="2_tum7q"]
+[ext_resource type="PackedScene" uid="uid://dl8oytxpbs5h4" path="res://Escenas/interactuar.tscn" id="3_dvk4a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vhl1w"]
+size = Vector2(56, 74)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wqtbo"]
+radius = 406.682
+
+[sub_resource type="Gradient" id="Gradient_quirh"]
+offsets = PackedFloat32Array(0.478261, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mjx1c"]
+gradient = SubResource("Gradient_quirh")
+fill = 1
+fill_from = Vector2(0.466258, 0.493865)
+fill_to = Vector2(0.822086, 0.365031)
+
+[node name="Lampara" type="Area2D"]
+script = ExtResource("1_cfads")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -2)
+shape = SubResource("RectangleShape2D_vhl1w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, -5)
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("2_tum7q")
+
+[node name="Interactuar" parent="Sprite2D" instance=ExtResource("3_dvk4a")]
+position = Vector2(0, 18.75)
+nombre_interaccion = "Encender Luz"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Interactuar"]
+position = Vector2(6.25, 31.25)
+shape = SubResource("CircleShape2D_wqtbo")
+
+[node name="Luz" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(7.00002, 10)
+scale = Vector2(5.76172, 5.85156)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_mjx1c")

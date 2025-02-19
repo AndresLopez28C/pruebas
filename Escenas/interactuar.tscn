@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl8oytxpbs5h4"]
+
+[ext_resource type="Script" path="res://Scripts/interactuar.gd" id="1_f2ob4"]
+
+[node name="Interactuar" type="Area2D"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_f2ob4")

@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://g6mxbgrls2i"]
+
+[ext_resource type="Script" path="res://Scripts/jugador.gd" id="1_10s0k"]
+[ext_resource type="Texture2D" uid="uid://dcgrend4c2of7" path="res://icon.svg" id="2_jr0y2"]
+[ext_resource type="AudioStream" uid="uid://dbsgla16t5nbr" path="res://Audio/Sonidos FX/Pisadas_Tierra.wav" id="3_bb1sq"]
+[ext_resource type="PackedScene" uid="uid://4mo2wrx4p8ms" path="res://Escenas/componente_interactuar.tscn" id="4_n13vd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ldrs7"]
+size = Vector2(38, 36)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_q20vg"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="Jugador" type="CharacterBody2D"]
+position = Vector2(51, 52)
+script = ExtResource("1_10s0k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.99992, 1.49998)
+scale = Vector2(0.249999, 0.257813)
+texture = ExtResource("2_jr0y2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-4, -1)
+shape = SubResource("RectangleShape2D_ldrs7")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_q20vg")
+
+[node name="Pisadas" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_bb1sq")
+
+[node name="Pisadas_t" type="Timer" parent="."]
+
+[node name="ComponenteInteractuar" parent="." instance=ExtResource("4_n13vd")]
+
+[connection signal="timeout" from="Pisadas_t" to="." method="_on_pisadas_t_timeout"]
