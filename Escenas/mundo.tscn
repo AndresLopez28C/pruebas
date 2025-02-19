@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://l45qljfv6kc5"]
+[gd_scene load_steps=19 format=3 uid="uid://l45qljfv6kc5"]
 
 [ext_resource type="PackedScene" uid="uid://g6mxbgrls2i" path="res://Escenas/jugador.tscn" id="1_e102q"]
 [ext_resource type="Script" path="res://Scripts/mundo.gd" id="1_fdxpb"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://m8364hmketht" path="res://Audio/Musica/Aphex Twin - Grass.mp3" id="7_a1emt"]
 [ext_resource type="PackedScene" uid="uid://dfxnfnfrym8lm" path="res://Escenas/lampara.tscn" id="8_6ms2k"]
 [ext_resource type="PackedScene" uid="uid://dgy7v0mignwem" path="res://Escenas/armario.tscn" id="9_7cmtj"]
+[ext_resource type="PackedScene" uid="uid://cimf7cp4v4jab" path="res://Escenas/ui.tscn" id="10_61vow"]
 
 [sub_resource type="Gradient" id="Gradient_urcy2"]
 offsets = PackedFloat32Array(0.434783, 0.817391)
@@ -251,3 +252,5 @@ position = Vector2(34, 100)
 
 [node name="Armario" parent="." instance=ExtResource("9_7cmtj")]
 position = Vector2(155, 83)
+
+[node name="UI" parent="." instance=ExtResource("10_61vow")]

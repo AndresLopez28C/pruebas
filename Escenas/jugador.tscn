@@ -38,4 +38,8 @@ stream = ExtResource("3_bb1sq")
 
 [node name="ComponenteInteractuar" parent="." instance=ExtResource("4_n13vd")]
 
+[node name="Agotado" type="Timer" parent="."]
+wait_time = 5.0
+
 [connection signal="timeout" from="Pisadas_t" to="." method="_on_pisadas_t_timeout"]
+[connection signal="timeout" from="Agotado" to="." method="_on_agotado_timeout"]

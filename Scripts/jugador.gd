@@ -3,18 +3,24 @@ extends CharacterBody2D
 class_name JugadorOB
 var velocidad = 100
 var control : bool = true
+var cansado : bool = false
 
 @onready var pisadas: AudioStreamPlayer = %Pisadas
 @export var es_visible: bool = true 
 @onready var colision: CollisionShape2D = %CollisionShape2D
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var agotado: Timer = $Agotado
 
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
+	
 func _ready() -> void:
 	get_node("Tracker").setup_player(self)
 	var armario = get_node("../Armario")
+	var ui = get_node("../UI")
 	armario.esconderseSignal.connect(esconderse)
+	ui.cansancio.connect(_cansado)
+
 func _process(delta):
 	if !control:
 		pass
@@ -30,10 +36,10 @@ func _reproducir_pisadas() ->void:
 	pisadas.play()
 
 func _input(event):
-	if event.is_action_pressed("Correr"):
+	if event.is_action_pressed("Correr") and !cansado:
 		velocidad = 200
 	if event.is_action_released("Correr"):
-		velocidad= 40
+		velocidad= 100
 	#if event.is_action_pressed("Esconder") and es_visible:
 		#esconderse()
 	#elif event.is_action_pressed("Esconder") and not es_visible:
@@ -51,10 +57,19 @@ func esconderse(A: bool):
 		sprite.visible = true
 		colision.set_deferred("disabled", false)
 		
-
 func salir_del_escondite():
 	control = true
 	es_visible = true
 	sprite.visible = true
 	colision.set_deferred("disabled", false)
 	
+func _cansado() ->void:
+	cansado = true
+	velocidad= 100
+	print("Se canso")
+	agotado.start()
+	
+
+
+func _on_agotado_timeout() -> void:
+	cansado = false
