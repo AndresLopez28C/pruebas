@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cimf7cp4v4jab"]
+[gd_scene load_steps=3 format=3 uid="uid://cimf7cp4v4jab"]
 
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="1_xw64a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cws0b"]
+bg_color = Color(0.296434, 0.708926, 0.0310309, 1)
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_xw64a")
@@ -12,14 +15,17 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -493.0
-offset_top = -59.0
-offset_right = 503.0
+offset_left = -334.0
+offset_top = -64.0
+offset_right = 356.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_cws0b")
 value = 100.0
+show_percentage = false
 
-[node name="Label" type="Label" parent="."]
+[node name="Texto" type="Label" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
