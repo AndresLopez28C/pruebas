@@ -14,6 +14,7 @@ properties/0/spawn = true
 properties/0/replication_mode = 1
 
 [node name="Jugador" type="CharacterBody2D"]
+z_index = 5
 position = Vector2(51, 52)
 script = ExtResource("1_10s0k")
 
@@ -39,7 +40,7 @@ stream = ExtResource("3_bb1sq")
 [node name="ComponenteInteractuar" parent="." instance=ExtResource("4_n13vd")]
 
 [node name="Agotado" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 10.0
 
 [connection signal="timeout" from="Pisadas_t" to="." method="_on_pisadas_t_timeout"]
 [connection signal="timeout" from="Agotado" to="." method="_on_agotado_timeout"]

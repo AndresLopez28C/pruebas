@@ -195,6 +195,11 @@ fill_to = Vector2(0.766871, 0.156442)
 [node name="Mundo" type="Node2D"]
 script = ExtResource("1_fdxpb")
 
+[node name="Oscuridad" type="CanvasModulate" parent="."]
+visible = false
+z_index = -1
+color = Color(0.0532495, 0.121623, 0.242064, 0.756863)
+
 [node name="Jugador" parent="." instance=ExtResource("1_e102q")]
 position = Vector2(84, 82)
 
@@ -216,10 +221,6 @@ offset_top = -20.0
 offset_right = -25.0
 offset_bottom = 20.0
 script = ExtResource("4_ciuqc")
-
-[node name="Oscuridad" type="CanvasModulate" parent="."]
-z_index = 1
-color = Color(0.0532495, 0.121623, 0.242064, 0.756863)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_tayok")
