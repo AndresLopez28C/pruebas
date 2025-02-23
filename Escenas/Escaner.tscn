@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://esq277k6ekjb"]
+
+[ext_resource type="Shader" path="res://Scripts/tracker.gdshader" id="1_7a1im"]
+[ext_resource type="Script" path="res://Scripts/tracker.gd" id="2_pnt1m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_um71n"]
+shader = ExtResource("1_7a1im")
+shader_parameter/line_color = Color(0.15967, 0.15967, 0.15967, 1)
+shader_parameter/pulse_color = Color(0.35, 0.5, 0.85, 1)
+shader_parameter/blip_color = Color(1, 0, 0, 1)
+shader_parameter/show_edges = false
+shader_parameter/range_lines = 4.0
+shader_parameter/sector_lines = 4.0
+shader_parameter/line_width = 0.01
+shader_parameter/pulse = 0.0
+shader_parameter/pulse_width = 0.5
+shader_parameter/blip_size = 0.1
+shader_parameter/blip_softness = 0.3
+shader_parameter/blip_presistence = 2.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/rotation = 0.0
+shader_parameter/blips_arr = null
+
+[node name="Tracker" type="ColorRect"]
+material = SubResource("ShaderMaterial_um71n")
+offset_left = -132.0
+offset_top = -48.0
+offset_right = -27.0
+offset_bottom = 50.0
+script = ExtResource("2_pnt1m")

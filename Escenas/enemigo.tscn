@@ -1,11 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://ca5ncqt5aku8j"]
+[gd_scene load_steps=5 format=3 uid="uid://ca5ncqt5aku8j"]
 
 [ext_resource type="Texture2D" uid="uid://dcgrend4c2of7" path="res://icon.svg" id="1_j1alj"]
 [ext_resource type="Script" path="res://Scripts/enemigo.gd" id="1_nx13u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0np0e"]
+size = Vector2(49, 47.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1n465"]
+radius = 64.0078
 
 [node name="Enemigo" type="CharacterBody2D"]
 script = ExtResource("1_nx13u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.814176, 0.0604016, 1.15514e-06, 1)
+position = Vector2(0, 2)
+scale = Vector2(0.28125, 0.242188)
 texture = ExtResource("1_j1alj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -1)
+shape = SubResource("RectangleShape2D_0np0e")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+debug_enabled = true
+
+[node name="AreaPerseguir" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPerseguir"]
+shape = SubResource("CircleShape2D_1n465")
+debug_color = Color(0.634942, 0.52737, 0, 0.42)
+
+[connection signal="body_entered" from="AreaPerseguir" to="." method="_on_area_perseguir_body_entered"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cimf7cp4v4jab"]
+[gd_scene load_steps=8 format=3 uid="uid://cimf7cp4v4jab"]
 
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="1_xw64a"]
+[ext_resource type="PackedScene" uid="uid://esq277k6ekjb" path="res://Escenas/Escaner.tscn" id="2_81y06"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cws0b"]
 bg_color = Color(0.296434, 0.708926, 0.0310309, 1)
@@ -10,14 +11,14 @@ resource_name = "Mostrar_tracker"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:position")
+tracks/0/path = NodePath("Tracker:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5, 1),
+"times": PackedFloat32Array(0, 0.5, 0.733333, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-1162, 0), Vector2(-553, 0), Vector2(-299, 0), Vector2(8, 2)]
+"values": [Vector2(256, 674), Vector2(256, 256), Vector2(256, 132), Vector2(256, 82)]
 }
 
 [sub_resource type="Animation" id="Animation_j7u60"]
@@ -25,19 +26,35 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:position")
+tracks/0/path = NodePath("Tracker:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-1162, 0)]
+"values": [Vector2(264, 674)]
+}
+
+[sub_resource type="Animation" id="Animation_3j35m"]
+resource_name = "Ocultar_tracker"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tracker:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(256, 82), Vector2(256, 132), Vector2(256, 256), Vector2(256, 674)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b1vda"]
 _data = {
 "Mostrar_tracker": SubResource("Animation_s1me1"),
+"Ocultar_tracker": SubResource("Animation_3j35m"),
 "RESET": SubResource("Animation_j7u60")
 }
 
@@ -78,17 +95,13 @@ text = "HOLA MUNDO
 "
 horizontal_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1162.0
-offset_right = -1162.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0.411765)
-
 [node name="AnimacionesUI" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_b1vda")
 }
+
+[node name="Tracker" parent="." instance=ExtResource("2_81y06")]
+offset_left = 256.0
+offset_top = 674.0
+offset_right = 889.0
+offset_bottom = 1146.0

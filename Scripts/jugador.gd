@@ -1,4 +1,3 @@
-@static_unload
 extends CharacterBody2D
 class_name JugadorOB
 var velocidad = 100
@@ -15,9 +14,9 @@ func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 	
 func _ready() -> void:
-	get_node("Tracker").setup_player(self)
 	var armario = get_node("../Armario")
 	var ui = get_node("../UI")
+	get_node("../UI/Tracker").setup_player(self)
 	armario.esconderseSignal.connect(esconderse)
 	ui.cansancio.connect(_cansado)
 
@@ -40,10 +39,8 @@ func _input(event):
 		velocidad = 200
 	if event.is_action_released("Correr"):
 		velocidad= 100
-	#if event.is_action_pressed("Esconder") and es_visible:
-		#esconderse()
-	#elif event.is_action_pressed("Esconder") and not es_visible:
-		#salir_del_escondite()
+	if event.is_action_pressed("Escaner"):
+		control = !control
 
 func esconderse(A: bool):
 	if A: ##Estamos entrando a escondernos
