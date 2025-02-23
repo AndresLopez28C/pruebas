@@ -1,5 +1,7 @@
 extends CanvasLayer
 @onready var estamina: ProgressBar = %Estamina
+@onready var animaciones_ui: AnimationPlayer = $AnimacionesUI
+
 signal cansancio
 var desactivado : bool =false
 # Called when the node enters the scene tree for the first time.
@@ -19,4 +21,5 @@ func _process(delta: float) -> void:
 	if estamina.value ==100:
 		desactivado = false
 func _input(event):
-	pass
+	if event.is_action_pressed("Esconder"):
+		animaciones_ui.play("Mostrar_tracker")
