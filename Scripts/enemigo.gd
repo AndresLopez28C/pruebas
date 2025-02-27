@@ -2,8 +2,8 @@ extends CharacterBody2D
 class_name enemigoCL
 @onready var agentenav: NavigationAgent2D = $NavigationAgent2D
 @export var objetivo : Node2D
-const speed = 100
-const accel = 7
+const speed = 80
+const accel = 5
 func _ready() -> void:
 	get_node("../../UI/Tracker").add_enemy(self)
 
@@ -18,5 +18,12 @@ func _process(delta):
 
 func _on_area_perseguir_body_entered(body: Node2D) -> void:
 	if body is JugadorOB:
-		print("Entro jugador en rango")
+		$AreaPerseguir/CirculoSeguir.scale = Vector2(1.5,1.5)
+		$Sorpresa.play()
 		objetivo = get_node("../../Jugador")
+
+
+func _on_area_perseguir_body_exited(body: Node2D) -> void:
+	if body is JugadorOB:
+		$AreaPerseguir/CirculoSeguir.scale = Vector2(1,1)
+		objetivo = get_node("../../Objetivo")

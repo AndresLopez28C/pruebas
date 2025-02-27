@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://l45qljfv6kc5"]
+[gd_scene load_steps=26 format=3 uid="uid://l45qljfv6kc5"]
 
 [ext_resource type="PackedScene" uid="uid://g6mxbgrls2i" path="res://Escenas/jugador.tscn" id="1_e102q"]
 [ext_resource type="Script" path="res://Scripts/mundo.gd" id="1_fdxpb"]
@@ -17,8 +17,7 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kdjpc"]
 gradient = SubResource("Gradient_urcy2")
 fill = 1
-fill_from = Vector2(0.576687, 0.610429)
-fill_to = Vector2(0.834356, 0.156442)
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dkwr7"]
 texture = ExtResource("2_im4mv")
@@ -176,6 +175,12 @@ sources/0 = SubResource("TileSetAtlasSource_dkwr7")
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rv3tp"]
 polygon = PackedVector2Array(62, 63, 79, 63, 79, 15, 16, 17, 17, 63, 51, 64, 49, 51, 60, 50)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gdbgy"]
+polygon = PackedVector2Array(269, 427, 159, 425, 157, 508, 274, 507)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ye848"]
+polygon = PackedVector2Array(370, 450, 370, 433, 415, 433, 417, 560, 513, 560, 511, 383, 336, 385, 335, 287, 175, 287, 175, 335, 254, 337, 255, 383, 160, 384, 159, 432, 271, 431, 272, 512, 337, 511, 337, 432, 366, 432, 364, 530, 121, 529, 125, 249, 556, 257, 552, 578, 378, 571)
+
 [sub_resource type="Gradient" id="Gradient_gbxr5"]
 offsets = PackedFloat32Array(0.304348, 1)
 colors = PackedColorArray(1, 1, 0.266667, 1, 0, 0, 0, 0)
@@ -205,21 +210,55 @@ vertices = PackedVector2Array(324.867, 420.609, 325.859, 503.172, 282.25, 499.77
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 4, 7, 0), PackedInt32Array(9, 10, 11, 12), PackedInt32Array(13, 12, 11, 8, 0, 3), PackedInt32Array(13, 3, 14, 15)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(336, 287, 175, 288, 176, 332, 258, 335, 256, 382, 161, 386, 160, 429, 274, 436, 272, 509, 336, 514, 335, 431, 414, 434, 416, 557, 513, 559, 513, 388, 338, 385)])
 
+[sub_resource type="Animation" id="Animation_5ydlh"]
+resource_name = "Audio_Salida"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Musica:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -19.81, -30.97]
+}
+
+[sub_resource type="Animation" id="Animation_xb8vu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Musica:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_57e31"]
+_data = {
+"Audio_Salida": SubResource("Animation_5ydlh"),
+"RESET": SubResource("Animation_xb8vu")
+}
+
 [node name="Mundo" type="Node2D"]
 script = ExtResource("1_fdxpb")
 
 [node name="Oscuridad" type="CanvasModulate" parent="."]
-visible = false
 z_index = -1
 color = Color(0.0532495, 0.121623, 0.242064, 0.756863)
 
 [node name="Jugador" parent="." instance=ExtResource("1_e102q")]
-position = Vector2(216, 495)
+position = Vector2(307, 494)
 
 [node name="PointLight2D" type="PointLight2D" parent="Jugador"]
-visible = false
-position = Vector2(-10, -13)
-scale = Vector2(1.58398, 1.73438)
+position = Vector2(5.99999, 1.99999)
+scale = Vector2(2.62012, 2.24219)
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_kdjpc")
 
@@ -240,6 +279,15 @@ layer_1/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608,
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_rv3tp")
 
+[node name="Sombras" type="Node" parent="."]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sombras"]
+position = Vector2(-3, 8)
+occluder = SubResource("OccluderPolygon2D_gdbgy")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Sombras"]
+occluder = SubResource("OccluderPolygon2D_ye848")
+
 [node name="PointLight2D" type="PointLight2D" parent="."]
 visible = false
 position = Vector2(54, 48)
@@ -248,7 +296,6 @@ texture = SubResource("GradientTexture2D_58w4t")
 
 [node name="Musica" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_a1emt")
-volume_db = -8.723
 autoplay = true
 
 [node name="Lampara" parent="." instance=ExtResource("8_6ms2k")]
@@ -283,7 +330,12 @@ position = Vector2(0, 2)
 navigation_polygon = SubResource("NavigationPolygon_vc2tx")
 
 [node name="Enemigo" parent="NavigationRegion2D" node_paths=PackedStringArray("objetivo") instance=ExtResource("6_12l47")]
-position = Vector2(296, 391)
+position = Vector2(299, 391)
 objetivo = NodePath("../../Objetivo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_57e31")
+}
 
 [connection signal="body_entered" from="Objetivo/Area2D" to="Objetivo" method="_on_area_2d_body_entered"]

@@ -2,7 +2,7 @@ extends ColorRect
 
 const MAX_BLIPS := 15 # Maximum blips that can be displayed at one time. Set the MAX_BLIPS constant in the shader to the same value.
 const MAX_PULSE := 2.0 # How far the pulse will go until it resets. The edge of the tracker is 1.0.
-const PULSE_SPEED := 1.0 # How fast the pulse moves, e.g 1.0 = one second to reach edge of tracker, 2.0 = half a second and so on.
+const PULSE_SPEED := 1.2 # How fast the pulse moves, e.g 1.0 = one second to reach edge of tracker, 2.0 = half a second and so on.
 const SCALE := 400.0 # How many pixels in global space the tracker's radius equals.
 const BLIP_PARKED_POS := Vector2(2.0, 2.0) # Where unused blips are 'parked' out of view.
 var pulse := MAX_PULSE

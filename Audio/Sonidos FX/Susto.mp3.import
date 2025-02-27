@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://28vwi7heqpm8"
+path="res://.godot/imported/Susto.mp3-2b06e0566be127de98a9b4029f2baed7.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sonidos FX/Susto.mp3"
+dest_files=["res://.godot/imported/Susto.mp3-2b06e0566be127de98a9b4029f2baed7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

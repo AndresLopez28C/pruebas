@@ -16,7 +16,6 @@ collision_mask = 16
 shape = SubResource("CircleShape2D_nxtp6")
 
 [node name="TextoInt" type="Label" parent="."]
-z_index = 10
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -28,8 +27,7 @@ offset_right = 43.5
 offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "E para usar
-"
+text = "Presiona E para usar"
 
 [connection signal="area_entered" from="RangoIntera" to="." method="_on_rango_intera_area_entered"]
 [connection signal="area_exited" from="RangoIntera" to="." method="_on_rango_intera_area_exited"]
