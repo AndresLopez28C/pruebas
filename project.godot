@@ -64,3 +64,7 @@ Escaner={
 2d_physics/layer_3="Enemigo"
 2d_physics/layer_4="Recogibles"
 2d_physics/layer_5="Interactuar"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

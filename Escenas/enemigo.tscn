@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ca5ncqt5aku8j"]
+[gd_scene load_steps=8 format=3 uid="uid://ca5ncqt5aku8j"]
 
-[ext_resource type="Texture2D" uid="uid://dcgrend4c2of7" path="res://icon.svg" id="1_j1alj"]
 [ext_resource type="Script" path="res://Scripts/enemigo.gd" id="1_nx13u"]
+[ext_resource type="Texture2D" uid="uid://202wbsnixw1b" path="res://Imagenes/Sprites/enemigo.png" id="2_vr221"]
 [ext_resource type="AudioStream" uid="uid://28vwi7heqpm8" path="res://Audio/Sonidos FX/Susto.mp3" id="3_3yy5h"]
+[ext_resource type="AudioStream" uid="uid://d3kg1f00rqa5a" path="res://Audio/Sonidos FX/Respiracion.mp3" id="4_qx7lj"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8iwqh"]
 light_mode = 2
@@ -19,12 +20,10 @@ script = ExtResource("1_nx13u")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.814176, 0.0604016, 1.15514e-06, 1)
 material = SubResource("CanvasItemMaterial_8iwqh")
-position = Vector2(0, 2)
-scale = Vector2(0.28125, 0.242188)
-texture = ExtResource("1_j1alj")
+texture = ExtResource("2_vr221")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, -1)
+position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_0np0e")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -36,11 +35,16 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CirculoSeguir" type="CollisionShape2D" parent="AreaPerseguir"]
+position = Vector2(-4, 0)
 shape = SubResource("CircleShape2D_1n465")
 debug_color = Color(0.634942, 0.52737, 0, 0.42)
 
 [node name="Sorpresa" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_3yy5h")
+
+[node name="Respiracion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_qx7lj")
+max_distance = 100.0
 
 [connection signal="body_entered" from="AreaPerseguir" to="." method="_on_area_perseguir_body_entered"]
 [connection signal="body_exited" from="AreaPerseguir" to="." method="_on_area_perseguir_body_exited"]

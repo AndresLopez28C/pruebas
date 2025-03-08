@@ -1,6 +1,6 @@
 extends CharacterBody2D
 class_name JugadorOB
-var velocidad = 80
+var velocidad = 40
 var control : bool = true
 var cansado : bool = false
 
