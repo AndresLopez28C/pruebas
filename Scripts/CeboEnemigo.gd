@@ -1,5 +1,6 @@
 extends Node2D
-var Posiciones = PackedVector2Array([Vector2(300, 490), Vector2(191, 309), Vector2(374,409)])
+var Posiciones = PackedVector2Array([Vector2(673, 248), Vector2(104, 109), Vector2(1085,333),
+Vector2(60, 316),Vector2(687, 46),])
 var index =0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,7 +14,7 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	var temporal = index
-	index= randi_range(0,2)
+	index= randi_range(0,4)
 	if body is enemigoCL:
 		print("index es "+str(index))
 		self.position = Posiciones[index]
